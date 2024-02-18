@@ -10,6 +10,7 @@ import Views.Viewer;
 
 public class App extends Input {
     public static void main(String[] args) {
+        // connecting to database
         try{
             Connect.getConnection();
         }
