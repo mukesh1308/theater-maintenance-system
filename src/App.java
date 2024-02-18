@@ -1,7 +1,7 @@
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 
-import Controllers.UserController;
+import Controllers.EmployeeController;
 import Models.Connect;
 import Util.Input;
 import Views.BookingClerk;
@@ -39,7 +39,7 @@ public class App extends Input {
                     System.out.print("Enter Password: ");
                     String password=Input.sc.nextLine();
                     System.out.println();
-                    int check=UserController.login(email, password);
+                    int check=EmployeeController.login(email, password);
                     if(check==1){
                         System.out.println("booking clerk");
                         System.out.println();
