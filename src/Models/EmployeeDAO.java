@@ -1,5 +1,5 @@
 package Models;
 
-public class EmployeeDAO {
+public class EmployeeDAO extends Connect {
     
 }
