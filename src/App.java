@@ -66,6 +66,7 @@ public class App extends Input {
             catch(Exception err){
                 System.out.println(err.getMessage());
             }
+            System.out.println();
         }
     }
 }

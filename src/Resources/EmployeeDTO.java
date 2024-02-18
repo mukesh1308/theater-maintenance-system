@@ -9,6 +9,7 @@ public class EmployeeDTO {
     private String employeeDesignation;
     private String employeeGender;
     
+    public EmployeeDTO(){}
     
     public EmployeeDTO(int employeeId, String email, String password, String employeeName, String employeeDesignation, String employeeGender) {
         this.employeeId = employeeId;
