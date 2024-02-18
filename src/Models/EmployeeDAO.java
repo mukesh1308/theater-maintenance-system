@@ -17,7 +17,7 @@ public class EmployeeDAO extends Connect {
     private EmployeeDAO() throws SQLException{
         selectByEmail=conn.prepareStatement("SELECT L.email,L.password,L.emp_id,E.emp_name,E.emp_designation,E.gender FROM login L JOIN employee E USING(emp_id) WHERE email=?");
         insertIntoLogin=conn.prepareStatement("INSERT INTO login(email,password,emp_id) VALUES (?,?,?)");
-        insertIntoEmployee=conn.prepareStatement("INSERT INTO employee(emp_name,emp_designation,emp_gender) VALUES (?,?,?)",Statement.RETURN_GENERATED_KEYS);
+        insertIntoEmployee=conn.prepareStatement("INSERT INTO employee(emp_name,emp_designation,gender) VALUES (?,?,?)",Statement.RETURN_GENERATED_KEYS);
         selectByDesignation=conn.prepareStatement("SELECT L.emp_id,L.email,E.emp_name,E.emp_designation,E.gender FROM login L JOIN employee E USING(emp_id) WHERE E.emp_designation=?");
     }
 

@@ -3,13 +3,13 @@ package Resources;
 public class MovieDTO {
     private int  movieId;
     private String movieName;
-    private String movieGenre;
-    private String movieLanguage;
+    private int movieGenre;
+    private int movieLanguage;
     private int movieDuration;
     private String movieReleaseDate;
 
-
-    public MovieDTO(int movieId, String movieName, String movieGenre, String movieLanguage, int movieDuration, String movieReleaseDate) {
+    public MovieDTO(){}
+    public MovieDTO(int movieId, String movieName, int movieGenre, int movieLanguage, int movieDuration, String movieReleaseDate) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.movieGenre = movieGenre;
@@ -35,19 +35,19 @@ public class MovieDTO {
         this.movieName = movieName;
     }
 
-    public String getMovieGenre() {
+    public int getMovieGenre() {
         return this.movieGenre;
     }
 
-    public void setMovieGenre(String movieGenre) {
+    public void setMovieGenre(int movieGenre) {
         this.movieGenre = movieGenre;
     }
 
-    public String getMovieLanguage() {
+    public int getMovieLanguage() {
         return this.movieLanguage;
     }
 
-    public void setMovieLanguage(String movieLanguage) {
+    public void setMovieLanguage(int movieLanguage) {
         this.movieLanguage = movieLanguage;
     }
 

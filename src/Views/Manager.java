@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import Controllers.EmployeeController;
-import Resources.EmployeeDTO;
+import Controllers.MovieController;
+import Resources.MovieReportDTO;
 import Util.Input;
 
 public class Manager extends Input{
@@ -41,10 +42,46 @@ public class Manager extends Input{
 
                 }
                 else if(choice==5){
-
+                    System.out.print("Enter movie name: ");
+                    String name=sc.nextLine();
+                    System.out.print("Enter release date (yyyy-mm-dd):");
+                    String date=sc.nextLine();
+                    System.out.print("Enter movie duration (min): ");
+                    int duration=sc.nextInt();
+                    System.out.println("\n");
+                    Display.displayGenre();
+                    System.out.print("Enter genre id: ");
+                    int genre=sc.nextInt();
+                    System.out.println("\n");
+                    Display.displayLanguage();
+                    System.out.print("Enter language id: ");
+                    int language=sc.nextInt();
+                    Input.sc.nextLine();
+                    MovieController.addMaovie(name, date, duration, genre, language);
+                    System.out.println("Movie Added");
                 }
                 else if(choice==6){
-
+                    System.out.println("1.Top revenue");
+                    System.out.println("2.find movie");
+                    System.out.println();
+                    System.out.print("Enter your choice: ");
+                    int c6=sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
+                    if(c6==1){
+                        System.out.print("Enter top: ");
+                        int top=sc.nextInt();
+                        sc.nextLine();
+                        Display.displayMovieReport(MovieController.MovieReportByTop(top));
+                    }
+                    else if(c6==2){
+                        System.out.print("Enter movie id: ");;
+                        int id=sc.nextInt();
+                        sc.nextLine();
+                        ArrayList<MovieReportDTO> arr=new ArrayList<>();
+                        arr.add(MovieController.movieReportById(id));
+                        Display.displayMovieReport(arr);
+                    }
                 }
                 else if(choice==7){
                     System.out.print("Enter employee name: ");
@@ -59,16 +96,13 @@ public class Manager extends Input{
                     
                     // adding a booking clerk
                     EmployeeController.addBookingClerk(email, password, name, gender);
-                    System.out.println("Booking clerk");
+                    System.out.println("Added Booking clerk");
                 }
                 else if(choice==8){
-                    System.out.printf("%-15s%-40s%-40s%-15s%-20s\n","Employee id","Employee name","Email","Gender","designation");
-                    System.out.println("-".repeat(130));
-                    ArrayList<EmployeeDTO> arr=EmployeeController.getBookingClerk();
-                    for(EmployeeDTO emp:arr){
-                        System.out.printf("%-15d%-40s%-40s%-15s%-20s\n",emp.getEmployeeId(),emp.getEmployeeName(),emp.getEmail(),emp.getEmployeeGender(),emp.getEmployeeDesignation());
-                    }
-                    System.out.println();
+
+                    // display booking clerk
+                    Display.displayEmployee();
+
                     System.out.print("Enter employee id: ");
                     int id=sc.nextInt();
                     sc.nextLine();
@@ -78,13 +112,8 @@ public class Manager extends Input{
                     System.out.println();
                 }
                 else if(choice==9){
-                    System.out.printf("%-15s%-40s%-40s%-15s\n","Employee id","Employee name","Email","Gender");
-                    System.out.println("-".repeat(110));
-                    ArrayList<EmployeeDTO> arr=EmployeeController.getBookingClerk();
-                    for(EmployeeDTO emp:arr){
-                        System.out.printf("%-15d%-40s%-40s%-15s\n",emp.getEmployeeId(),emp.getEmployeeName(),emp.getEmail(),emp.getEmployeeGender());
-                    }
-                    System.out.println();
+                    //display booking clerk
+                    Display.displayEmployee();
                 }
                 else if(choice==10){
                     break;
@@ -92,6 +121,7 @@ public class Manager extends Input{
             }
             catch(SQLException err){
                 System.out.println("Database Error");
+                System.out.println(err);
             }
             catch(InputMismatchException err){
                 System.out.println("Invalid Input");
