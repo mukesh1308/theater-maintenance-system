@@ -35,7 +35,21 @@ public class Manager extends Input{
     
                 }
                 else if(choice==2){
-
+                    System.out.println("1.Today Schedule");
+                    System.out.println("2.Any Date");
+                    System.out.println();
+                    System.out.print("Enter your choice: ");
+                    int c2=Input.sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
+                    if(c2==1){
+                        Display.displaySchedule(ScheduleController.getSchedule());
+                    }
+                    else if(c2==2){
+                        System.out.print("Enter date (yyyy-mm-dd): ");
+                        String date=sc.nextLine();
+                        Display.displaySchedule(ScheduleController.getSchedule(date));
+                    }
                 }
                 else if(choice==3){
                     System.out.print("Enter schedule date (yyyy-MM-dd): ");
@@ -145,6 +159,9 @@ public class Manager extends Input{
             }
             catch(InputMismatchException err){
                 System.out.println("Invalid Input");
+            }
+            catch(ArrayIndexOutOfBoundsException err){
+                System.out.println("Invalid show time input");
             }
             catch(Exception err){
                 System.out.println(err.getMessage());

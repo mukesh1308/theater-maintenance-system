@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import Models.MovieDAO;
@@ -32,5 +33,15 @@ public class ScheduleController {
         schedule.setShow(show);
         schedule.setScreenId(screen);
         scheduleModal.addSchedule(schedule);
+    }
+
+    public static ArrayList<ScheduleDTO> getSchedule() throws Exception{
+        ScheduleDAO scheduleModal=ScheduleDAO.getInstance();
+        return scheduleModal.getSchedule(format.format(new Date()));
+    }
+
+    public static ArrayList<ScheduleDTO> getSchedule(String date) throws Exception{
+        ScheduleDAO scheduleModal=ScheduleDAO.getInstance();
+        return scheduleModal.getSchedule(date);
     }
 }

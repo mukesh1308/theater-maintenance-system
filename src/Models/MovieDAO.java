@@ -27,8 +27,8 @@ public class MovieDAO extends Connect {
     }
     public void addMovie(MovieDTO movie) throws SQLException{
         insertMovie.setString(1, movie.getMovieName());
-        insertMovie.setInt(2, movie.getMovieGenre());
-        insertMovie.setInt(3, movie.getMovieLanguage());
+        insertMovie.setInt(2, movie.getMovieGenreId());
+        insertMovie.setInt(3, movie.getMovieLanguageId());
         insertMovie.setInt(4, movie.getMovieDuration());
         insertMovie.setString(5, movie.getMovieReleaseDate());
         insertMovie.executeUpdate();

@@ -7,7 +7,9 @@ import Controllers.MovieController;
 import Resources.EmployeeDTO;
 import Resources.GenreDTO;
 import Resources.LanguageDTO;
+import Resources.MovieDTO;
 import Resources.MovieReportDTO;
+import Resources.ScheduleDTO;
 
 public class Display {
     public static void displayEmployee() throws Exception{
@@ -42,6 +44,22 @@ public class Display {
         System.out.println("-".repeat(80));
         for(MovieReportDTO movie:arr){
             System.out.printf("%-20s%-40s%-20s\n", movie.getMovieId(),movie.getMovieName(),movie.getTotal());
+        }
+        System.out.println();
+    }
+    public static void displayMovie(ArrayList<MovieDTO> arr) throws Exception{
+        System.out.printf("%-20s%-40s%-20s%-20s%-20s%-20s\n","movie id","movie name","language","gener","release_date","duration");
+        System.out.println("-".repeat(140));
+        for(MovieDTO movie:arr){
+            System.out.printf("%-20d%-40s%-20s%-20s%-20s%-20d\n",movie.getMovieId(),movie.getMovieName(),movie.getMovieLanguage(),movie.getMovieGenre(),movie.getMovieReleaseDate(),movie.getMovieDuration());
+        }
+        System.out.println();
+    }
+    public static void displaySchedule(ArrayList<ScheduleDTO> arr){
+        System.out.printf("%-20s%-20s%-20s%-40s%-20s%-20s%-20s\n","Schedule id","Date","Time","movie name","language","screen","screen type");
+        System.out.println("-".repeat(160));
+        for(ScheduleDTO schedule:arr){
+            System.out.printf("%-20s%-20s%-20s%-40s%-20s%-20s%-20s\n",schedule.getScreenId(),schedule.getDate(),schedule.getShow(),schedule.getMovieName(),schedule.getMovieLanguage(),schedule.getScreenId(),schedule.getScreenType());
         }
         System.out.println();
     }

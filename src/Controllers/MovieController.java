@@ -26,8 +26,8 @@ public class MovieController {
         movie.setMovieName(name);
         movie.setMovieReleaseDate(date);
         movie.setMovieDuration(duration);
-        movie.setMovieGenre(genre);
-        movie.setMovieLanguage(language);
+        movie.setMovieGenreId(genre);
+        movie.setMovieLanguageId(language);
         MovieDAO movieModal=MovieDAO.getInstance();
         movieModal.addMovie(movie);
     }

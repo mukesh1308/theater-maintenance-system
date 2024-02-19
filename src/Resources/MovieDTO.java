@@ -3,22 +3,22 @@ package Resources;
 public class MovieDTO {
     private int  movieId;
     private String movieName;
-    private int movieGenre;
-    private int movieLanguage;
+    private int movieGenreId;
+    private int movieLanguageId;
     private int movieDuration;
     private String movieReleaseDate;
+    private String movieLanguage;
+    private String movieGenre;
 
     public MovieDTO(){}
-    public MovieDTO(int movieId, String movieName, int movieGenre, int movieLanguage, int movieDuration, String movieReleaseDate) {
+    public MovieDTO(int movieId, String movieName, int movieGenreId, int movieLanguageId, int movieDuration, String movieReleaseDate) {
         this.movieId = movieId;
         this.movieName = movieName;
-        this.movieGenre = movieGenre;
-        this.movieLanguage = movieLanguage;
+        this.movieGenreId = movieGenreId;
+        this.movieLanguageId = movieLanguageId;
         this.movieDuration = movieDuration;
         this.movieReleaseDate = movieReleaseDate;
     }
-
-
     public int getMovieId() {
         return this.movieId;
     }
@@ -35,20 +35,36 @@ public class MovieDTO {
         this.movieName = movieName;
     }
 
-    public int getMovieGenre() {
-        return this.movieGenre;
+    public int getMovieGenreId() {
+        return this.movieGenreId;
     }
 
-    public void setMovieGenre(int movieGenre) {
-        this.movieGenre = movieGenre;
+    public void setMovieGenreId(int movieGenreId) {
+        this.movieGenreId = movieGenreId;
     }
 
-    public int getMovieLanguage() {
+    public String getMovieLanguage() {
         return this.movieLanguage;
     }
 
-    public void setMovieLanguage(int movieLanguage) {
+    public void setMovieLanguage(String movieLanguage) {
         this.movieLanguage = movieLanguage;
+    }
+
+    public String getMovieGenre() {
+        return this.movieGenre;
+    }
+
+    public void setMovieGenre(String movieGenre) {
+        this.movieGenre = movieGenre;
+    }
+
+    public int getMovieLanguageId() {
+        return this.movieLanguageId;
+    }
+
+    public void setMovieLanguageId(int movieLanguageId) {
+        this.movieLanguageId = movieLanguageId;
     }
 
     public int getMovieDuration() {
@@ -66,5 +82,4 @@ public class MovieDTO {
     public void setMovieReleaseDate(String movieReleaseDate) {
         this.movieReleaseDate = movieReleaseDate;
     }
-
 }
