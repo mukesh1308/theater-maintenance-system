@@ -8,10 +8,13 @@ import Resources.LanguageDTO;
 
 public class LanguageDAO extends Connect{
     private static LanguageDAO instance;
+    // private Connection conn;
+    // private Statement statement;
+    private LanguageDAO() throws SQLException{
 
-    private LanguageDAO(){}
+    }
 
-    public static LanguageDAO getInstance(){
+    public static LanguageDAO getInstance() throws SQLException{
         if(instance==null){
             instance=new LanguageDAO();
         }

@@ -1,5 +1,6 @@
 package Models;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,9 +9,14 @@ import Resources.GenreDTO;
 
 public class GenreDAO extends Connect{
     private static GenreDAO instance;
-    private GenreDAO(){}
+    // private Connection conn;
+    // private Statement statement;
+    private GenreDAO() throws SQLException{
+        // conn=Connect.getConnection();
+        // statement=conn.createStatement();
+    }
 
-    public static GenreDAO getInstance(){
+    public static GenreDAO getInstance() throws SQLException{
         if(instance==null){
             instance=new GenreDAO();
         }

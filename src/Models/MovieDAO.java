@@ -33,6 +33,13 @@ public class MovieDAO extends Connect {
         insertMovie.setString(5, movie.getMovieReleaseDate());
         insertMovie.executeUpdate();
     }
+    public MovieDTO getMovieById(int id) throws SQLException{
+        ResultSet res=statement.executeQuery("SELECT movie_id,movie_name,genre_id,language_id,movie_duration,release_date FROM movie WHERE movie_id="+id);
+        if(res.next()){
+            return new MovieDTO(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getString(6));
+        }
+        return null;
+    }
     public MovieReportDTO movieReportById(int id) throws SQLException{
         selectById.setInt(1, id);
         ResultSet res=selectById.executeQuery();

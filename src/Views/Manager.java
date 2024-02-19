@@ -1,11 +1,13 @@
 package Views;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import Controllers.EmployeeController;
 import Controllers.MovieController;
+import Controllers.ScheduleController;
 import Resources.MovieReportDTO;
 import Util.Input;
 
@@ -36,7 +38,22 @@ public class Manager extends Input{
 
                 }
                 else if(choice==3){
-
+                    System.out.print("Enter schedule date (yyyy-MM-dd): ");
+                    String date=sc.nextLine();
+                    System.out.println();
+                    for(int i=0;i<shows.length;i++){
+                        System.out.println(i+" -> "+shows[i]);
+                    }
+                    System.out.print("Enter show: ");
+                    int time=sc.nextInt();
+                    System.out.print("Enter movie id: ");
+                    int movie=sc.nextInt();
+                    System.out.print("Enter screen id: ");
+                    int screen=sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
+                    ScheduleController.addSchedule(date, shows[time], movie, screen);
+                    System.out.println("Schedule added");
                 }
                 else if(choice==4){
 
@@ -122,6 +139,9 @@ public class Manager extends Input{
             catch(SQLException err){
                 System.out.println("Database Error");
                 System.out.println(err);
+            }
+            catch(ParseException err){
+                System.out.println("Invalid Date");
             }
             catch(InputMismatchException err){
                 System.out.println("Invalid Input");

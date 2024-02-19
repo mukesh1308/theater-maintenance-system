@@ -15,5 +15,14 @@ public class Connect {
         conn=DriverManager.getConnection(Env.databaseURL, Env.databaseUser, Env.databasePassword);
         statement=conn.createStatement();
     }
-    
+
+
+    // private static Connection conn;
+    // private Connect(){}
+    // public static Connection getConnection() throws SQLException{
+    //     if(conn==null){
+    //         conn=DriverManager.getConnection(Env.databaseURL, Env.databaseUser, Env.databasePassword);
+    //     }
+    //     return conn;
+    // }
 }

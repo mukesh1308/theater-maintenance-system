@@ -8,13 +8,17 @@ import java.util.ArrayList;
 
 import Resources.EmployeeDTO;
 
-public class EmployeeDAO extends Connect {
+public class EmployeeDAO extends Connect{
+    // private Connection conn;
+    // private Statement statement;
     private static EmployeeDAO instance;
     private PreparedStatement selectByEmail;
     private PreparedStatement insertIntoLogin;
     private PreparedStatement insertIntoEmployee;
     private PreparedStatement selectByDesignation;
     private EmployeeDAO() throws SQLException{
+        // conn=Connect.getConnection();
+        // statement=conn.createStatement();
         selectByEmail=conn.prepareStatement("SELECT L.email,L.password,L.emp_id,E.emp_name,E.emp_designation,E.gender FROM login L JOIN employee E USING(emp_id) WHERE email=?");
         insertIntoLogin=conn.prepareStatement("INSERT INTO login(email,password,emp_id) VALUES (?,?,?)");
         insertIntoEmployee=conn.prepareStatement("INSERT INTO employee(emp_name,emp_designation,gender) VALUES (?,?,?)",Statement.RETURN_GENERATED_KEYS);

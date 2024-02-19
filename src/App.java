@@ -18,7 +18,7 @@ public class App extends Input {
             System.out.println(err.getMessage());
             return;
         }
-
+        Manager.start();
         // start of applicatioin
         while(true){
             try{
