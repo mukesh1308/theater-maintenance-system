@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+import Controllers.BookingController;
 import Controllers.EmployeeController;
 import Controllers.MovieController;
 import Controllers.ScheduleController;
@@ -16,7 +17,7 @@ public class Manager extends Input{
     public static void start(){
         while(true){
             try{
-                System.out.println("1.Today's revenue");
+                System.out.println("1.display revenue");
                 System.out.println("2.View movie schedule");
                 System.out.println("3.Add movie schedule");
                 System.out.println("4.remove movie schedule");
@@ -32,7 +33,21 @@ public class Manager extends Input{
                 Input.sc.nextLine();
                 System.out.println();
                 if(choice==1){
-    
+                    System.out.println("1.Today's Revenue");
+                    System.out.println("2.Any Date");
+                    System.out.println();
+                    System.out.print("Enter your choice: ");
+                    int c1=sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
+                    if(c1==1){
+                        Display.displayRevenue(BookingController.getReport());
+                    }
+                    else if(c1==2){
+                        System.out.print("Enter date (yyyy-mm-dd): ");
+                        String date=sc.nextLine();
+                        Display.displayRevenue(BookingController.getReport(date));
+                    }
                 }
                 else if(choice==2){
                     System.out.println("1.Today Schedule");
@@ -70,7 +85,11 @@ public class Manager extends Input{
                     System.out.println("Schedule added");
                 }
                 else if(choice==4){
-
+                    System.out.print("Enter schedule id: ");
+                    int id=sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
+                    ScheduleController.removeSchedule(id);
                 }
                 else if(choice==5){
                     System.out.print("Enter movie name: ");

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Models.BookingDAO;
 import Models.MovieDAO;
 import Models.ScheduleDAO;
 import Resources.MovieDTO;
@@ -43,5 +44,15 @@ public class ScheduleController {
     public static ArrayList<ScheduleDTO> getSchedule(String date) throws Exception{
         ScheduleDAO scheduleModal=ScheduleDAO.getInstance();
         return scheduleModal.getSchedule(date);
+    }
+
+    public static void removeSchedule(int id) throws Exception{
+        BookingDAO bookingModal=BookingDAO.getInstance();
+        int count=bookingModal.getCountBySchedule(id);
+        if(count>0){
+            throw new Exception(count+" bookinges where done you connot delete the schedule");
+        }
+        ScheduleDAO scheduleModal=ScheduleDAO.getInstance();
+        scheduleModal.removeSchedule(id);
     }
 }

@@ -9,6 +9,7 @@ import Resources.GenreDTO;
 import Resources.LanguageDTO;
 import Resources.MovieDTO;
 import Resources.MovieReportDTO;
+import Resources.RevenueReportDTO;
 import Resources.ScheduleDTO;
 
 public class Display {
@@ -61,6 +62,18 @@ public class Display {
         for(ScheduleDTO schedule:arr){
             System.out.printf("%-20s%-20s%-20s%-40s%-20s%-20s%-20s\n",schedule.getScreenId(),schedule.getDate(),schedule.getShow(),schedule.getMovieName(),schedule.getMovieLanguage(),schedule.getScreenId(),schedule.getScreenType());
         }
+        System.out.println();
+    }
+    public static void displayRevenue(ArrayList<RevenueReportDTO> arr){
+        System.out.printf("%-20s%-30s%-20s%-20s\n","employee_id","employee name","ticket sold","total money");
+        System.out.println("-".repeat(90));
+        int sum=0;
+        for(RevenueReportDTO revenue:arr){
+            System.out.printf("%-20s%-30s%-20s%-20s\n",revenue.getEmployeeId(),revenue.getEmployeeName(),revenue.getTicketSold(),revenue.getTotalMoney());
+            sum+=revenue.getTotalMoney();
+        }
+        System.out.println("-".repeat(90));
+        System.out.printf("%-70s%-20d\n","total",sum);
         System.out.println();
     }
 }

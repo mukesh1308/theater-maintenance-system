@@ -12,10 +12,12 @@ public class ScheduleDAO extends Connect{
     private PreparedStatement selectByDateTime;
     private PreparedStatement selectByDate;
     private PreparedStatement insert;
+    private PreparedStatement deleteById;
     private ScheduleDAO() throws SQLException{
         selectByDateTime=conn.prepareStatement("SELECT schedule_id,date,show_time,movie_id,screen_id FROM movie_schedule WHERE date=? AND show_time=? AND screen_id=?");
         insert=conn.prepareStatement("INSERT INTO movie_schedule(date,show_time,movie_id,screen_id) VALUES (?,?,?,?)");
         selectByDate=conn.prepareStatement("SELECT S.schedule_id,S.date,S.show_time,M.movie_name,L.language,Sc.screen_no,St.screen_type FROM movie_schedule S JOIN movie M USING(movie_id) JOIN languages L USING(language_id) JOIN screen Sc USING(screen_id) JOIN screen_types St USING(screen_type_id) WHERE S.Date=? ORDER BY S.show_time");
+        deleteById=conn.prepareStatement("DELETE FROM movie_schedule WHERE schedule_id=?");
     }
 
     public static ScheduleDAO getInstance() throws SQLException{
@@ -59,5 +61,9 @@ public class ScheduleDAO extends Connect{
             arr.add(schedule);
         }
         return arr;
+    }
+    public void removeSchedule(int id) throws SQLException{
+        deleteById.setInt(1, id);
+        deleteById.executeUpdate();
     }
 }
