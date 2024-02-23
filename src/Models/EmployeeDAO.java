@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
+
 import Resources.EmployeeDTO;
 
 public class EmployeeDAO extends Connect{
@@ -16,6 +18,7 @@ public class EmployeeDAO extends Connect{
     private PreparedStatement insertIntoLogin;
     private PreparedStatement insertIntoEmployee;
     private PreparedStatement selectByDesignation;
+    private PreparedStatement updatePassword;
     private EmployeeDAO() throws SQLException{
         // conn=Connect.getConnection();
         // statement=conn.createStatement();
@@ -23,6 +26,7 @@ public class EmployeeDAO extends Connect{
         insertIntoLogin=conn.prepareStatement("INSERT INTO login(email,password,emp_id) VALUES (?,?,?)");
         insertIntoEmployee=conn.prepareStatement("INSERT INTO employee(emp_name,emp_designation,gender) VALUES (?,?,?)",Statement.RETURN_GENERATED_KEYS);
         selectByDesignation=conn.prepareStatement("SELECT L.emp_id,L.email,E.emp_name,E.emp_designation,E.gender FROM login L JOIN employee E USING(emp_id) WHERE E.emp_designation=?");
+        updatePassword=conn.prepareStatement("UPDATE login SET password=? WHERE email=?");
     }
 
     public static EmployeeDAO getInstance() throws SQLException{
@@ -75,5 +79,11 @@ public class EmployeeDAO extends Connect{
             arr.add(employee);
         }
         return arr;
+    }
+
+    public void updatePassword(String email,String password) throws SQLException{
+        updatePassword.setString(1, password);
+        updatePassword.setString(2, email);
+        updatePassword.executeUpdate();
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Controllers.EmployeeController;
 import Controllers.MovieController;
+import Resources.BillDTO;
 import Resources.EmployeeDTO;
 import Resources.GenreDTO;
 import Resources.LanguageDTO;
@@ -11,6 +12,7 @@ import Resources.MovieDTO;
 import Resources.MovieReportDTO;
 import Resources.RevenueReportDTO;
 import Resources.ScheduleDTO;
+import Resources.SeatDTO;
 
 public class Display {
     public static void displayEmployee() throws Exception{
@@ -60,7 +62,7 @@ public class Display {
         System.out.printf("%-20s%-20s%-20s%-40s%-20s%-20s%-20s\n","Schedule id","Date","Time","movie name","language","screen","screen type");
         System.out.println("-".repeat(160));
         for(ScheduleDTO schedule:arr){
-            System.out.printf("%-20s%-20s%-20s%-40s%-20s%-20s%-20s\n",schedule.getScreenId(),schedule.getDate(),schedule.getShow(),schedule.getMovieName(),schedule.getMovieLanguage(),schedule.getScreenId(),schedule.getScreenType());
+            System.out.printf("%-20s%-20s%-20s%-40s%-20s%-20s%-20s\n",schedule.getId(),schedule.getDate(),schedule.getShow(),schedule.getMovieName(),schedule.getMovieLanguage(),schedule.getScreenId(),schedule.getScreenType());
         }
         System.out.println();
     }
@@ -69,11 +71,39 @@ public class Display {
         System.out.println("-".repeat(90));
         int sum=0;
         for(RevenueReportDTO revenue:arr){
-            System.out.printf("%-20s%-30s%-20s%-20s\n",revenue.getEmployeeId(),revenue.getEmployeeName(),revenue.getTicketSold(),revenue.getTotalMoney());
+            System.out.printf("%-20d%-30s%-20d%-20d\n",revenue.getEmployeeId(),revenue.getEmployeeName(),revenue.getTicketSold(),revenue.getTotalMoney());
             sum+=revenue.getTotalMoney();
         }
         System.out.println("-".repeat(90));
         System.out.printf("%-70s%-20d\n","total",sum);
+        System.out.println();
+    }
+    public static void displayBookingReport(ArrayList<SeatDTO> arr){
+        System.out.printf("%-15s%-20s%-20s%-20s\n","seat id","seat type","ticket sold","total money");
+        System.out.println("-".repeat(75));
+        for(SeatDTO seat:arr){
+            System.out.printf("%-15d%-20s%-20d%-20d\n",seat.getSeatId(),seat.getSeatType(),seat.getTicketSold(),seat.getTotalMoney());
+        }
+        System.out.println();
+    }
+
+    public static void displayAvaliableSeat(ArrayList<SeatDTO> arr){
+        System.out.printf("%-20s%-30s%-20s%-20s\n","seat id","seat type","seat cost","available");
+        System.out.println("-".repeat(90));
+        for(SeatDTO seat:arr){
+            System.out.printf("%-20s%-30s%-20s%-20s\n",seat.getSeatId(),seat.getSeatType(),seat.getSeatCost(),seat.getAvaliable());
+        }
+        System.out.println();
+    }
+
+    public static void displayBill(BillDTO bill){
+        System.out.println("-".repeat(60));
+        System.out.printf("%-40s:%-20d\n","seat("+bill.getSeat()+")",bill.getSeatCost());
+        System.out.printf("%-40s:%-20d\n","screen("+bill.getScreenType()+" "+bill.getScreenSize()+"feet)",bill.getScreenCost());
+        System.out.printf("%-40s:%-20d\n","movie("+bill.getMovieDuration()+"min)",bill.getMovieCost());
+        System.out.println("-".repeat(60));
+        int total=bill.getMovieCost()+bill.getScreenCost()+bill.getSeatCost();
+        System.out.printf("%-40s:%-20d\n","total",total);
         System.out.println();
     }
 }

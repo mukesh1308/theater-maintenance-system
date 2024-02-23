@@ -10,6 +10,7 @@ import Controllers.EmployeeController;
 import Controllers.MovieController;
 import Controllers.ScheduleController;
 import Resources.MovieReportDTO;
+import Util.Cookie;
 import Util.Input;
 
 public class Manager extends Input{
@@ -90,6 +91,7 @@ public class Manager extends Input{
                     sc.nextLine();
                     System.out.println();
                     ScheduleController.removeSchedule(id);
+                    System.out.println("Schedule removed");
                 }
                 else if(choice==5){
                     System.out.print("Enter movie name: ");
@@ -166,6 +168,7 @@ public class Manager extends Input{
                     Display.displayEmployee();
                 }
                 else if(choice==10){
+                    Cookie.setEmployee(null);
                     break;
                 }
             }

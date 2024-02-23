@@ -66,4 +66,11 @@ public class ScheduleDAO extends Connect{
         deleteById.setInt(1, id);
         deleteById.executeUpdate();
     }
+    public ScheduleDTO getById(int id) throws SQLException{
+        ResultSet res=statement.executeQuery("SELECT * FROM movie_schedule");
+        if(res.next()){
+            return new ScheduleDTO(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));
+        }
+        return null;
+    }
 }
